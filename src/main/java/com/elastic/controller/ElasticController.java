@@ -13,17 +13,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elastic.model.Article;
+import com.elastic.model.Source;
 import com.elastic.repository.ArticleRepository;
+import com.elastic.repository.SourceRepository;
 
 @RestController
 public class ElasticController {
 	
 	@Autowired
 	private ArticleRepository articleRepository;
+	
+	@Autowired
+	private SourceRepository sourceRepository;
+
 
 	@PostMapping("/add")
 	public Article addArticle(@RequestBody Article article) {
 		return articleRepository.save(article);
+	}
+	@PostMapping("/addSource")
+	public Source addSource(@RequestBody Source source) {
+		return sourceRepository.save(source);
 	}
 
 	@PutMapping("/update/{id}")
